@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="ac.metaTitle">Accessibility — Riverside School</title>
+<meta name="description" data-i18n-attr="content:ac.metaDesc" content="Accessibility statement for the Riverside School website: conformance, known issues, how to use the display settings and how to report a problem.">
+<meta name="theme-color" content="#1B4332">
+<link rel="canonical" href="https://dmitrii-mazurkevich.github.io/accessible-school-website/accessibility.html">
+<link rel="alternate" hreflang="en" href="https://dmitrii-mazurkevich.github.io/accessible-school-website/accessibility.html?lang=en">
+<link rel="alternate" hreflang="ru" href="https://dmitrii-mazurkevich.github.io/accessible-school-website/accessibility.html?lang=ru">
+<link rel="alternate" hreflang="ka" href="https://dmitrii-mazurkevich.github.io/accessible-school-website/accessibility.html?lang=ka">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231B4332'/%3E%3Cpath d='M20 62c8-7 16-7 24 0s16 7 24 0 12-5 12-5' stroke='%23fff' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M30 24h40v18H30z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=PT+Sans:wght@400;700&family=Noto+Sans+Georgian:wght@400;700&family=Noto+Serif+Georgian:wght@400;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>
+/* Language and display settings are restored before the first paint, so a
+   visitor who needs large white-on-black text never sees the default scheme. */
+(function () {
+  var d = document.documentElement, langs = ['en', 'ru', 'ka'], lang = null;
+  var p = location.search.match(/[?&]lang=([a-z]{2})/i);
+  if (p && langs.indexOf(p[1].toLowerCase()) > -1) lang = p[1].toLowerCase();
+  if (!lang) { try { var s = localStorage.getItem('rs-lang'); if (langs.indexOf(s) > -1) lang = s; } catch (e) {} }
+  if (!lang) {
+    var n = (navigator.language || 'en').toLowerCase();
+    lang = n.indexOf('ru') === 0 ? 'ru' : (n.indexOf('ka') === 0 ? 'ka' : 'en');
+  }
+  d.setAttribute('data-lang', lang);
+  if (lang !== 'en') { d.className += ' i18n-pending'; setTimeout(function () { d.classList.remove('i18n-pending'); }, 1200); }
+
+  try {
+    var a = JSON.parse(localStorage.getItem('rs-a11y') || '{}');
+    if (a.size && a.size !== 'normal') d.setAttribute('data-a11y-size', a.size);
+    if (a.scheme && a.scheme !== 'normal') d.setAttribute('data-a11y-scheme', a.scheme);
+    if (a.spacing && a.spacing !== 'normal') d.setAttribute('data-a11y-spacing', a.spacing);
+    if (a.images === 'off') d.setAttribute('data-a11y-images', 'off');
+  } catch (e) {}
+})();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+<div class="a11y-bar">
+  <div class="container">
+    <div class="a11y-bar__row">
+      <span data-i18n="a11y.barIntro">This site has display settings for visitors with low vision.</span>
+      <button class="a11y-btn" type="button" data-a11y-toggle aria-expanded="false" aria-controls="a11y-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span data-a11y-toggle-label data-i18n="a11y.panelOpen">Display settings</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="a11y-panel" id="a11y-panel" aria-label="Display settings" data-i18n-attr="aria-label:a11y.panelTitle" hidden>
+  <div class="container">
+    <div class="a11y-panel__grid">
+      <fieldset>
+        <legend data-i18n="a11y.size">Text size</legend>
+        <div class="opt-row">
+          <label class="opt opt--a1"><input type="radio" name="a11y-size" value="normal" checked><span>A</span></label>
+          <label class="opt opt--a2"><input type="radio" name="a11y-size" value="large"><span>A</span></label>
+          <label class="opt opt--a3"><input type="radio" name="a11y-size" value="xlarge"><span>A</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="a11y.colours">Colours</legend>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="a11y-scheme" value="normal" checked><span data-i18n="a11y.schemeNormal">Normal</span></label>
+          <label class="opt"><input type="radio" name="a11y-scheme" value="contrast"><span data-i18n="a11y.schemeContrast">High contrast</span></label>
+          <label class="opt"><input type="radio" name="a11y-scheme" value="inverted"><span data-i18n="a11y.schemeInverted">White on black</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="a11y.spacing">Letter spacing</legend>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="a11y-spacing" value="normal" checked><span data-i18n="a11y.spacingNormal">Normal</span></label>
+          <label class="opt"><input type="radio" name="a11y-spacing" value="wide"><span data-i18n="a11y.spacingWide">Wide</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="a11y.images">Images</legend>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="a11y-images" value="on" checked><span data-i18n="a11y.imagesOn">Show</span></label>
+          <label class="opt"><input type="radio" name="a11y-images" value="off"><span data-i18n="a11y.imagesOff">Hide</span></label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="a11y-panel__foot">
+      <button class="btn btn--outline" type="button" data-a11y-reset data-i18n="a11y.reset">Reset to default</button>
+      <span data-i18n="a11y.saved">Your choice is remembered on this device and applies to every page.</span>
+    </div>
+  </div>
+</section>
+
+<p class="visually-hidden" id="a11y-live" role="status" aria-live="polite"></p>
+
+<header class="site-header">
+  <div class="container">
+    <div class="masthead">
+      <a class="crest" href="index.html">
+        <svg class="crest__art" viewBox="0 0 100 100" role="img" aria-label="Riverside School crest">
+          <path d="M50 6 90 18v34c0 22-17 36-40 42C27 88 10 74 10 52V18z" fill="var(--accent)"/>
+          <path d="M24 62c7-6 14-6 21 0s14 6 21 0 10-4 10-4" stroke="var(--accent-ink)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <rect x="32" y="28" width="36" height="16" fill="var(--accent-ink)"/>
+          <path d="M50 28v16" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+        <span class="crest__text">
+          <span class="crest__name">Riverside School</span>
+          <span class="crest__sub" data-i18n="crest.sub">State secondary school no. 14</span>
+        </span>
+      </a>
+      <div class="masthead__actions">
+        <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav.language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+          <button type="button" data-lang="ka" aria-pressed="false">KA</button>
+        </div>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-i18n-attr="aria-label:nav.menu" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="mainnav" aria-label="Main" data-i18n-attr="aria-label:nav.main">
+    <div class="container">
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="index.html#admissions" data-i18n="nav.admissions">Admissions</a></li>
+        <li><a href="timetable.html" data-i18n="nav.timetable">Timetable</a></li>
+        <li><a href="documents.html" data-i18n="nav.documents">Documents</a></li>
+        <li><a href="accessibility.html" aria-current="page" data-i18n="nav.accessibility">Accessibility</a></li>
+        <li><a href="index.html#contacts" data-i18n="nav.contacts">Contacts</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="container">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="index.html#admissions" data-i18n="nav.admissions">Admissions</a>
+    <a href="timetable.html" data-i18n="nav.timetable">Timetable</a>
+    <a href="documents.html" data-i18n="nav.documents">Documents</a>
+    <a href="accessibility.html" data-i18n="nav.accessibility">Accessibility</a>
+    <a href="index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li data-i18n="nav.accessibility">Accessibility</li>
+      </ul>
+      <h1 class="page-head__title" data-i18n="ac.title">Accessibility</h1>
+      <p class="page-head__lede" data-i18n="ac.lede">What we have done to make this site usable by everyone, what still is not right, and how to tell us about it.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <h2 data-i18n="ac.h1">Conformance</h2>
+        <p data-i18n="ac.p1">
+          This site is built to meet WCAG 2.1 level AA. That is a standard, not a slogan: it
+          covers colour contrast, keyboard operation, text alternatives, form labels, headings
+          and the structure of tables. The site was checked against it page by page.
+        </p>
+
+        <h2 data-i18n="ac.h2">Display settings</h2>
+        <p data-i18n="ac.p2">
+          The bar at the top of every page opens a panel with four controls. Whatever you choose
+          is remembered on this device and applied to every page before it appears, so you never
+          see the default first.
+        </p>
+        <ul>
+          <li data-i18n="ac.l1"><strong>Text size</strong> — three steps. Everything on the page scales together, including tables.</li>
+          <li data-i18n="ac.l2"><strong>Colours</strong> — normal, high contrast, or white on black.</li>
+          <li data-i18n="ac.l3"><strong>Letter spacing</strong> — wider spacing between letters, words and lines.</li>
+          <li data-i18n="ac.l4"><strong>Images</strong> — decorative artwork can be switched off. Nothing that carries information is an image.</li>
+        </ul>
+
+        <h2 data-i18n="ac.h3">Using the site with a keyboard</h2>
+        <ul>
+          <li data-i18n="ac.k1"><strong>Tab</strong> moves forward, <strong>Shift + Tab</strong> back. The focused element always has a visible outline.</li>
+          <li data-i18n="ac.k2">The first stop on every page is <strong>Skip to content</strong>, which jumps past the navigation.</li>
+          <li data-i18n="ac.k3"><strong>Escape</strong> closes the display-settings panel.</li>
+          <li data-i18n="ac.k4">Tables scroll sideways with the arrow keys once focused.</li>
+        </ul>
+
+        <h2 data-i18n="ac.h4">What we know is not right yet</h2>
+        <p data-i18n="ac.p4">
+          Publishing this list is part of the standard, and pretending it is empty helps nobody.
+        </p>
+        <ul>
+          <li data-i18n="ac.i1">Some documents in the register are scans rather than text, so a screen reader cannot read them. We are replacing them; ask for any of them in another format meanwhile.</li>
+          <li data-i18n="ac.i2">The timetable is a wide table. It scrolls on a phone, which works but is not comfortable. A stacked mobile view is planned for the summer.</li>
+          <li data-i18n="ac.i3">Video from school events has no captions before 2025.</li>
+        </ul>
+
+        <h2 data-i18n="ac.h5">Documents in another format</h2>
+        <p data-i18n="ac.p5">
+          Any document from the register can be supplied as large print, plain text or an audio
+          recording within five working days. Ask at the office, by telephone or by email. You
+          do not have to explain why.
+        </p>
+
+        <h2 data-i18n="ac.h6">Reporting a problem</h2>
+        <p data-i18n="ac.p6">
+          If something on this site is unusable for you, tell us and we will fix it. Write to
+          <a href="mailto:access@riverside.example.edu">access@riverside.example.edu</a> or
+          telephone the office on <a href="tel:+15550117400">+1 (555) 011-7400</a>. We reply
+          within five working days and say what we are going to do.
+        </p>
+        <p data-i18n="ac.p7">
+          If the answer does not satisfy you, the complaints procedure in the document register
+          explains where to take it next.
+        </p>
+
+        <h2 data-i18n="ac.h7">This statement</h2>
+        <p data-i18n="ac.p8">
+          Prepared on 2 April 2026 following a review of every page against WCAG 2.1 AA,
+          using both automated checks and manual keyboard and screen-reader testing.
+        </p>
+      </div>
+
+      <p class="mt-4">
+        <a class="btn" href="documents.html#policies" data-i18n="ac.cta">Accessibility plan (PDF)</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <h2 data-i18n="foot.school">The school</h2>
+        <p class="muted" style="font-size:.94rem" data-i18n="foot.about">
+          Riverside School has taught pupils on Riverside Way since 1962. Years 1 to 12,
+          742 pupils, 58 teachers.
+        </p>
+      </div>
+      <div>
+        <h2 data-i18n="foot.sections">Sections</h2>
+        <ul>
+          <li><a href="index.html#admissions" data-i18n="nav.admissions">Admissions</a></li>
+          <li><a href="timetable.html" data-i18n="nav.timetable">Timetable</a></li>
+          <li><a href="documents.html" data-i18n="nav.documents">Documents</a></li>
+          <li><a href="accessibility.html" data-i18n="nav.accessibility">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-i18n="foot.contacts">Contacts</h2>
+        <ul>
+          <li><a href="tel:+15550117400">+1 (555) 011-7400</a></li>
+          <li><a href="mailto:office@riverside.example.edu">office@riverside.example.edu</a></li>
+          <li data-i18n="foot.address">14 Riverside Way</li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-i18n="foot.hours">Office hours</h2>
+        <ul>
+          <li data-i18n="foot.hoursWeek">Mon–Fri, 8:00–17:00</li>
+          <li data-i18n="foot.hoursSat">Sat, 9:00–13:00</li>
+          <li data-i18n="foot.hoursSun">Sun, closed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p data-i18n="foot.legal1">Licence for educational activity no. 4471 of 1 September 2023. State accreditation no. 0912 of 20 February 2024.</p>
+      <p data-i18n="foot.legal2">Information is published in line with the transparency requirements for educational institutions.</p>
+      <p>© <span data-year>2026</span> Riverside School · <span data-i18n="foot.demoNote">Concept site built for a web-development portfolio.</span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
